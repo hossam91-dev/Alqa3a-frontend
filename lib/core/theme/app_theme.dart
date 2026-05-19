@@ -27,6 +27,26 @@ class AppTheme {
         titleTextStyle: AppTextStyles.h4,
       ),
 
+
+      textTheme: const TextTheme(
+      displayLarge: AppTextStyles.display,
+      headlineLarge: AppTextStyles.h1,
+      headlineMedium: AppTextStyles.h2,
+      headlineSmall: AppTextStyles.h3,
+      titleLarge: AppTextStyles.h4,
+      bodyLarge: AppTextStyles.bodyL,
+      bodyMedium: AppTextStyles.bodyM,
+      bodySmall: AppTextStyles.bodyS,
+      labelLarge: AppTextStyles.bodyL,
+      labelMedium: AppTextStyles.bodyM,
+      labelSmall: AppTextStyles.caption,
+    ).apply(
+      fontFamily: 'Cairo',  
+      bodyColor: Colors.black87,
+      displayColor: Colors.black,
+    ),
+  
+
       // Bottom Navigation
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: AppColors.white,
@@ -129,6 +149,8 @@ class AppTheme {
         space: 1,
       ),
 
+    
+
       // Chip
       chipTheme: ChipThemeData(
         backgroundColor: AppColors.white,
@@ -145,4 +167,5 @@ class AppTheme {
       ),
     );
   }
+  
 }

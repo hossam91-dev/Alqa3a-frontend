@@ -12,7 +12,7 @@ class AppColors {
   static const Color white      = Color(0xFFFFFFFF);
   static const Color background = Color(0xFFF9FAFB);
   static const Color border     = Color(0xFFE5E7EB);
-  static const Color divider    = Color(0xFFF3F4F6);
+  static const Color divider    = Color(0xFFE5E7EB);
 
   // Text
   static const Color textDark   = Color(0xFF111827);
