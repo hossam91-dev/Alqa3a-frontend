@@ -14,4 +14,9 @@ abstract class AppStrings{
   static const String confirmPassword = 'تأكيد كلمة المرور';
   static const String createAccount = 'إنشاء حساب';
   static const String alreadyHaveAccount = 'لديك حساب بالفعل؟';
+  static const String otpCode = 'رمز التحقق';
+  static const String otpDescription = 'أدخل الرمز المكون من 6 أرقام الذي تم إرساله إلى بريدك الإلكتروني.';
+  static const String resendOtp = 'إعادة إرسال الرمز';
+  static const String didntReceiveOtp = 'لم تستلم الرمز؟';
+  static const String verify = 'تأكيد';
 }

@@ -46,7 +46,9 @@ class LoginScreen extends StatelessWidget {
                   AppTextField(isPassword: true, hint: '••••••••'),
                   Gap(AppGaps.g16),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.go(AppRoutes.otp);
+                    },
                     child: AppText.button(AppStrings.forgotPassword,color: AppColors.primary,),
                   ),
                   Gap(AppGaps.g16),

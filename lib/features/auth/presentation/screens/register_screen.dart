@@ -1,8 +1,6 @@
 import 'package:alqa3a/core/constants/app_padding.dart';
 import 'package:alqa3a/core/constants/app_strings.dart';
 import 'package:alqa3a/core/constants/gaps.dart';
-import 'package:alqa3a/core/router/app_router.dart';
-import 'package:alqa3a/core/theme/app_colors.dart';
 import 'package:alqa3a/core/widgets/app_button.dart';
 import 'package:alqa3a/core/widgets/app_text.dart';
 import 'package:alqa3a/core/widgets/app_text_field.dart';
