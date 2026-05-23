@@ -37,7 +37,6 @@ class OtpFormView extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           Gap(AppGaps.g32),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(controller.length, (index) {
