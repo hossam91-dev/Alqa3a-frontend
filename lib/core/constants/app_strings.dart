@@ -19,4 +19,19 @@ abstract class AppStrings{
   static const String resendOtp = 'إعادة إرسال الرمز';
   static const String didntReceiveOtp = 'لم تستلم الرمز؟';
   static const String verify = 'تأكيد';
+  static const String emailRequired = 'البريد الإلكتروني مطلوب';
+  static const String validEmail = 'يرجى إدخال عنوان بريد إلكتروني صالح';
+  static const String passwordRequired = 'كلمة المرور مطلوبة';
+  static const String passwordLength = 'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل';
+  static const String passwordUppercase = 'يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل';
+  static const String passwordLowercase = 'يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل';
+  static const String passwordNumber = 'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل';
+  static const String passwordSpecialCharacter = 'يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل';
+  static const String passwordsDoNotMatch = 'كلمات المرور غير متطابقة';
+  static const String confirmYourPassword = 'يرجى تأكيد كلمة المرور الخاصة بك';
+  static const String fullNameRequired = 'الاسم الكامل مطلوب';
+  static const String validFullName = 'يرجى إدخال الاسم الأول واسم العائلة على الأقل (أحرف فقط)';
+  static const String phoneRequired = 'رقم الهاتف مطلوب';
+  static const String validPhone = 'يرجى إدخال رقم هاتف صحيح';
+  static const String required = 'مطلوب';
 }
