@@ -59,15 +59,17 @@ class _AppTextFieldState extends State<AppTextField> {
       decoration: InputDecoration(
         hintText: widget.hint,
 
-        // استخدام الـ Theme الأساسي في حالة عدم تحقق الشرط، وتخطيه فقط عند النجاح
+       
         focusedBorder: _isSuccess
-            ? const OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.success, width: 2.0),
+            ?  OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: AppColors.success, width: 1.5),
               )
             : null,
 
         enabledBorder: _isSuccess
-            ? const OutlineInputBorder(
+            ?  OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: AppColors.success, width: 1.5),
               )
             : null,

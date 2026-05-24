@@ -52,7 +52,7 @@ class AppText extends StatelessWidget {
     this.fontFamily,
   });
 
-  // Named constructors الحالية ممتازة ومظبوطة
+  
   const AppText.displayLarge(
     this.text, {
     super.key,
@@ -159,7 +159,7 @@ class AppText extends StatelessWidget {
   TextStyle _getThemeStyle(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    // الحماية هنا: استخدام ?? لضمان عدم حدوث كراش نهائياً لو مظهرش ستايل معين
+    
     switch (type) {
       case AppTextType.displayLarge:
         return textTheme.displayLarge ?? const TextStyle();

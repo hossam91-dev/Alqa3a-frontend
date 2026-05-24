@@ -1,3 +1,4 @@
+import 'package:alqa3a/core/constants/constants.dart';
 import 'package:alqa3a/core/theme/app_colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -31,10 +32,11 @@ class ActionTextSpan extends StatelessWidget {
           TextSpan(
             text: actionText,
             style: (actionStyle ?? 
-              const TextStyle(color: AppColors.primary))
+              const TextStyle(color: AppColors.primary,fontFamily: Constants.fontFamily))
               .copyWith(
                 decoration: TextDecoration.underline,
                 fontWeight: FontWeight.bold,
+                
               ),
             recognizer: TapGestureRecognizer()
               ..onTap = onPressed,
