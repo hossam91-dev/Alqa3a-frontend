@@ -23,6 +23,7 @@ class OtpController {
     }
     otpCodeNotifier.value = currentCode;
     isOtpCompleteNotifier.value = currentCode.length == length;
+    debugPrint('Otp Code: $currentCode');
   }
 
   void handleOnChanged(int index, String value, BuildContext context){

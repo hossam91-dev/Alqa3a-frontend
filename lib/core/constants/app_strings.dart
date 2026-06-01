@@ -34,4 +34,15 @@ abstract class AppStrings{
   static const String phoneRequired = 'رقم الهاتف مطلوب';
   static const String validPhone = 'يرجى إدخال رقم هاتف صحيح';
   static const String required = 'مطلوب';
+  static const String forgotPasswordHint = 'أدخل بريدك الإلكتروني وسنرسل لك رمزاً لإعادة تعيين كلمةالمرور.';
+static const String sendCode = 'إرسال الرمز';
+static const String returnToLogin = 'العودة لتسجيل الدخول';
+static const String resetPasswordHint = 'إعادة تعيين كلمة المرور الخاصة بك';
+static const String resetPassword = 'اعادة تعين كلمة المرور';
+static const String newPassword = 'كلمة المرور الجديدة';
+static const String resetPasswordSuccessMessage = 'تم تحديث كلمة المرور بنجاح';
+static const String home = 'الرئسيه';
+static const String halls = 'القاعات';
+static const String bookings = 'حجوزاتي';
+static const String profile = 'حسابي';
 }

@@ -57,15 +57,14 @@ class AppTheme {
 
       // Bottom Navigation
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.textLight,
         selectedLabelStyle: TextStyle(
-          fontSize: 10,
+          fontSize: 12,
           fontWeight: FontWeight.w600,
         ),
         unselectedLabelStyle: TextStyle(fontSize: 10),
-        elevation: 8,
         type: BottomNavigationBarType.fixed,
       ),
 

@@ -1,29 +1,12 @@
-class AppException implements Exception {
+class AppException {
   final String message;
-  final String? code;
+  final int? statusCode;
 
-  const AppException(this.message, {this.code});
+  const AppException({
+    required this.message,
+    this.statusCode,
+  });
 
   @override
   String toString() => message;
-}
-
-class AuthException extends AppException {
-  const AuthException(super.message, {super.code});
-}
-
-class NetworkException extends AppException {
-  const NetworkException(super.message, {super.code});
-}
-
-class ServerException extends AppException {
-  const ServerException(super.message, {super.code});
-}
-
-class ValidationException extends AppException {
-  const ValidationException(super.message, {super.code});
-}
-
-class UnknownException extends AppException {
-  const UnknownException(super.message, {super.code});
 }

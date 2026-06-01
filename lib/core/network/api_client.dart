@@ -1,107 +1,146 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../error/error_handler.dart';
-import '../error/result.dart';
+import 'dio_helper.dart';
+import 'api_response.dart';
+import '../error/app_exception.dart';
+import '../utils/result.dart';
 
 class ApiClient {
-  late final Dio _dio;
-  final FlutterSecureStorage _storage = const FlutterSecureStorage();
+  final Dio _dio = DioHelper.createDio();
 
-  static const String _baseUrl = 'http://10.0.2.2:3000/api/v1';
+  // ─── Error Handler ───────────────────────────
+  AppException _handleError(DioException error) {
+    if (error.response != null) {
+      final data = error.response!.data;
+      final message = data['message'] ?? 'حدث خطأ غير متوقع';
+      final statusCode = error.response!.statusCode ?? 0;
+      return AppException(message: message, statusCode: statusCode);
+    }
 
-  ApiClient() {
-    _dio = Dio(
-      BaseOptions(
-        baseUrl: _baseUrl,
-        connectTimeout: const Duration(seconds: 10),
-        receiveTimeout: const Duration(seconds: 10),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-      ),
-    );
-
-    _dio.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) async {
-          final token = await _storage.read(key: 'access_token');
-          if (token != null) {
-            options.headers['Authorization'] = 'Bearer $token';
-          }
-          handler.next(options);
-        },
-        onError: (error, handler) {
-          handler.next(error);
-        },
-      ),
-    );
+    switch (error.type) {
+      case DioExceptionType.connectionTimeout:
+      case DioExceptionType.receiveTimeout:
+      case DioExceptionType.sendTimeout:
+        return const AppException(
+          message: 'انتهت مهلة الاتصال، تحقق من الإنترنت',
+        );
+      case DioExceptionType.connectionError:
+        return const AppException(
+          message: 'لا يوجد اتصال بالإنترنت',
+        );
+      default:
+        return const AppException(message: 'حدث خطأ غير متوقع');
+    }
   }
 
-  Future<Result<T>> get<T>(
+  // ─── GET ─────────────────────────────────────
+  Future<Result<T, AppException>> get<T>(
     String path, {
     Map<String, dynamic>? queryParameters,
-    required T Function(dynamic data) fromJson,
+    required T Function(dynamic) fromJson,
   }) async {
     try {
       final response = await _dio.get(
         path,
         queryParameters: queryParameters,
       );
-      return Success(fromJson(response.data['data']));
+      final apiResponse = ApiResponse.fromJson(
+        response.data,
+        fromJson,
+      );
+      return Success(apiResponse.data as T);
+    } on DioException catch (e) {
+      return Failure(_handleError(e));
     } catch (e) {
-      return Failure(ErrorHandler.handle(e));
+      return Failure(
+        const AppException(message: 'حدث خطأ غير متوقع'),
+      );
     }
   }
 
-  Future<Result<T>> post<T>(
+  // ─── POST ────────────────────────────────────
+  Future<Result<T, AppException>> post<T>(
     String path, {
     dynamic data,
-    required T Function(dynamic data) fromJson,
+    required T Function(dynamic) fromJson,
   }) async {
     try {
       final response = await _dio.post(path, data: data);
-      return Success(fromJson(response.data['data']));
+      final apiResponse = ApiResponse.fromJson(
+        response.data,
+        fromJson,
+      );
+      return Success(apiResponse.data as T);
+    } on DioException catch (e) {
+      return Failure(_handleError(e));
     } catch (e) {
-      return Failure(ErrorHandler.handle(e));
+      return Failure(
+        const AppException(message: 'حدث خطأ غير متوقع'),
+      );
     }
   }
 
-  Future<Result<T>> put<T>(
+  // ─── PUT ─────────────────────────────────────
+  Future<Result<T, AppException>> put<T>(
     String path, {
     dynamic data,
-    required T Function(dynamic data) fromJson,
+    required T Function(dynamic) fromJson,
   }) async {
     try {
       final response = await _dio.put(path, data: data);
-      return Success(fromJson(response.data['data']));
+      final apiResponse = ApiResponse.fromJson(
+        response.data,
+        fromJson,
+      );
+      return Success(apiResponse.data as T);
+    } on DioException catch (e) {
+      return Failure(_handleError(e));
     } catch (e) {
-      return Failure(ErrorHandler.handle(e));
+      return Failure(
+        const AppException(message: 'حدث خطأ غير متوقع'),
+      );
     }
   }
 
-  Future<Result<T>> patch<T>(
+  // ─── PATCH ───────────────────────────────────
+  Future<Result<T, AppException>> patch<T>(
     String path, {
     dynamic data,
-    required T Function(dynamic data) fromJson,
+    required T Function(dynamic) fromJson,
   }) async {
     try {
       final response = await _dio.patch(path, data: data);
-      return Success(fromJson(response.data['data']));
+      final apiResponse = ApiResponse.fromJson(
+        response.data,
+        fromJson,
+      );
+      return Success(apiResponse.data as T);
+    } on DioException catch (e) {
+      return Failure(_handleError(e));
     } catch (e) {
-      return Failure(ErrorHandler.handle(e));
+      return Failure(
+        const AppException(message: 'حدث خطأ غير متوقع'),
+      );
     }
   }
 
-  Future<Result<T>> delete<T>(
+  // ─── DELETE ──────────────────────────────────
+  Future<Result<T, AppException>> delete<T>(
     String path, {
-    required T Function(dynamic data) fromJson,
+    required T Function(dynamic) fromJson,
   }) async {
     try {
       final response = await _dio.delete(path);
-      return Success(fromJson(response.data['data']));
+      final apiResponse = ApiResponse.fromJson(
+        response.data,
+        fromJson,
+      );
+      return Success(apiResponse.data as T);
+    } on DioException catch (e) {
+      return Failure(_handleError(e));
     } catch (e) {
-      return Failure(ErrorHandler.handle(e));
+      return Failure(
+        const AppException(message: 'حدث خطأ غير متوقع'),
+      );
     }
   }
 }

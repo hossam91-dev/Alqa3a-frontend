@@ -3,14 +3,29 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../network/api_client.dart';
 
+import '../../features/auth/data/datasources/auth_remote_datasource.dart';
+import '../../features/auth/data/repositories/auth_repository_impl.dart';
+import '../../features/auth/domain/repositories/auth_repository.dart';
+
+import '../../features/auth/presentation/cubit/auth_cubit.dart';
+
 final sl = GetIt.instance;
 
 Future<void> setupServiceLocator() async {
-  // ─── External ───────────────────────────────────
+  // ─── External ─────────────────────────────────
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => const FlutterSecureStorage());
 
-  // ─── Core ────────────────────────────────────────
+  // ─── Core ──────────────────────────────────────
   sl.registerLazySingleton(() => ApiClient());
+
+  // ─── Auth ──────────────────────────────────────
+  sl.registerLazySingleton(() => AuthRemoteDataSource(sl()));
+
+  sl.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(sl(), sl()),
+  );
+
+  sl.registerFactory(() => AuthCubit(authRepository: sl()));
 }

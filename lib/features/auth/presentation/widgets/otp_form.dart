@@ -51,6 +51,7 @@ class OtpFormView extends StatelessWidget {
                     focusNode: controller.focusNodes[index],
                     maxLength: 1,
                     keyboardType: TextInputType.number,
+                    textDirection: TextDirection.rtl,
                     textAlign: TextAlign.center,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: InputDecoration(counterText: ""),

@@ -1,5 +1,7 @@
+import 'package:alqa3a/core/constants/svg_icons.dart';
 import 'package:alqa3a/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class AppTextField extends StatefulWidget {
   final String? hint;
@@ -8,6 +10,7 @@ class AppTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final bool isPassword;
   final bool enabled;
+  final String prefixIconPath;
 
   const AppTextField({
     super.key,
@@ -17,6 +20,7 @@ class AppTextField extends StatefulWidget {
     this.keyboardType,
     this.isPassword = false,
     this.enabled = true,
+    required this.prefixIconPath,
   });
 
   @override
@@ -59,36 +63,56 @@ class _AppTextFieldState extends State<AppTextField> {
       decoration: InputDecoration(
         hintText: widget.hint,
 
-       
         focusedBorder: _isSuccess
-            ?  OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+            ? OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: AppColors.success, width: 1.5),
               )
             : null,
 
         enabledBorder: _isSuccess
-            ?  OutlineInputBorder(
+            ? OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: AppColors.success, width: 1.5),
               )
             : null,
 
         suffixIcon: widget.isPassword
-            ? IconButton(
-                icon: Icon(
-                  _obscureText ? Icons.visibility_off : Icons.visibility,
-                  color: _isSuccess ? AppColors.success : null,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
-              )
+            ? GestureDetector(
+              child: _TextFormIcon(
+              prefixIconPath:  _obscureText ? SvgIcons.eyeOff : SvgIcons.eye,
+                color: _isSuccess ? AppColors.success : AppColors.textLight,
+              ),
+              onTap: () {
+                setState(() {
+                  _obscureText = !_obscureText;
+                });
+              },
+            )
             : _isSuccess
-            ? const Icon(Icons.check_circle, color: AppColors.success)
+            ? _TextFormIcon(
+                prefixIconPath: SvgIcons.circleCheck,
+                color: AppColors.success,
+              )
             : null,
+        prefixIcon: _TextFormIcon(prefixIconPath: widget.prefixIconPath),
+      ),
+    );
+  }
+}
+
+class _TextFormIcon extends StatelessWidget {
+  final String prefixIconPath;
+  final Color? color;
+  const _TextFormIcon({required this.prefixIconPath, this.color});
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: SvgPicture.asset(
+        width: 20,
+        prefixIconPath,
+        color: color ?? AppColors.textLight,
       ),
     );
   }
