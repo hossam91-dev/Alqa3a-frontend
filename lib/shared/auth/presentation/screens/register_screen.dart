@@ -13,6 +13,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../shared/auth/presentation/widgets/role_widget.dart';
+import '../../domain/entities/user_entity.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -28,7 +29,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       TextEditingController();
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  String selectedRole = '';
+  final ValueNotifier<String> _selectedRole = ValueNotifier(UserRole.user.jsonValue);
   final _formKey = GlobalKey<FormState>();
 
   
@@ -63,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Gap(AppGaps.g32),
                   RoleWidget(
                     onRoleChanged: (role){
-                      selectedRole = role.jsonValue;
+                      _selectedRole.value = role.jsonValue;
                     },
                   ),
                   Gap(AppGaps.g32),
@@ -130,7 +131,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       phone: _phoneController,
                       email: _emailController,
                       password: _passwordController,
-                      role: selectedRole,
+                      role: _selectedRole,
                       formKey: _formKey
                   ),
     

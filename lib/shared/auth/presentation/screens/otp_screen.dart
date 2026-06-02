@@ -27,7 +27,7 @@ class _OtpScreenState extends State<OtpScreen> {
   void initState() {
     super.initState();
     _otpController = OtpController(length: 6);
-    _checkToken();
+
   }
 
   @override
@@ -35,11 +35,7 @@ class _OtpScreenState extends State<OtpScreen> {
     _otpController.dispose();
     super.dispose();
   }
-  Future<void> _checkToken() async {
-    const storage = FlutterSecureStorage();
-    final token = await storage.read(key: 'access_token');
-    print('Token in OTP Screen: $token');
-  }
+
   @override
   Widget build(BuildContext context) {
 

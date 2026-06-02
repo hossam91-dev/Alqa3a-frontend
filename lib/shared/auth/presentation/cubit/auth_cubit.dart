@@ -89,7 +89,6 @@ class AuthCubit extends Cubit<AuthState> {
           emit(AuthError(error.message));
       }
     } catch (e) {
-      print('Google Sign In Error: $e');
       emit(AuthError('فشل تسجيل الدخول بـ Google'));
     }
   }

@@ -16,7 +16,7 @@ class RegisterHandler extends StatelessWidget {
   final TextEditingController phone;
   final TextEditingController email;
   final TextEditingController password;
-  final String role;
+  final ValueNotifier<String> role;
   final GlobalKey<FormState> formKey;
   const RegisterHandler({
     super.key,
@@ -59,7 +59,7 @@ class RegisterHandler extends StatelessWidget {
                 email: email.text,
                 password: password.text,
                 phoneNumber: phone.text,
-                role: role,
+                role: role.value,
               );
             }
           },
