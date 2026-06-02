@@ -1,27 +1,31 @@
 import 'package:alqa3a/core/di/service_locator.dart';
 import 'package:alqa3a/core/widgets/main_scaffold.dart';
-import 'package:alqa3a/features/auth/domain/entities/user_entity.dart';
-import 'package:alqa3a/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:alqa3a/features/auth/presentation/screens/forgot_password_screen.dart';
-import 'package:alqa3a/features/auth/presentation/screens/reset_password_screen.dart';
+import 'package:alqa3a/shared/auth/domain/entities/user_entity.dart';
+import 'package:alqa3a/shared/auth/presentation/cubit/auth_cubit.dart';
+import 'package:alqa3a/shared/auth/presentation/screens/forgot_password_screen.dart';
+import 'package:alqa3a/shared/auth/presentation/screens/reset_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../features/auth/presentation/screens/login_screen.dart';
-import '../../features/auth/presentation/screens/register_screen.dart';
-import '../../features/auth/presentation/screens/otp_screen.dart';
-import '../../features/halls/presentation/screens/home_screen.dart';
-import '../../features/halls/presentation/screens/browse_screen.dart';
-import '../../features/halls/presentation/screens/hall_details_screen.dart';
-import '../../features/smart_match/presentation/screens/smart_match_screen.dart';
-import '../../features/smart_match/presentation/screens/smart_match_results_screen.dart';
-import '../../features/bookings/presentation/screens/booking_screen.dart';
-import '../../features/bookings/presentation/screens/booking_status_screen.dart';
-import '../../features/bookings/presentation/screens/my_bookings_screen.dart';
-import '../../features/saved_halls/presentation/screens/saved_halls_screen.dart';
-import '../../features/profile/presentation/screens/profile_screen.dart';
+import '../../modules/halls/presentation/user/screens/hall_details_screen.dart';
+import '../../shared/auth/presentation/screens/login_screen.dart';
+import '../../shared/auth/presentation/screens/register_screen.dart';
+import '../../shared/auth/presentation/screens/otp_screen.dart';
+import '../../modules/halls/presentation/user/screens/home_screen.dart';
+import '../../modules/halls/presentation/user/screens/browse_screen.dart';
+import '../../modules/smart_match/presentation/screens/smart_match_screen.dart';
+import '../../modules/smart_match/presentation/screens/smart_match_results_screen.dart';
+import '../../modules/bookings/presentation/screens/booking_screen.dart';
+import '../../modules/bookings/presentation/screens/booking_status_screen.dart';
+import '../../modules/bookings/presentation/screens/my_bookings_screen.dart';
+import '../../modules/saved_halls/presentation/screens/saved_halls_screen.dart';
+import '../../modules/profile/presentation/screens/profile_screen.dart';
+import '../widgets/splash_screen.dart';
 
 class AppRoutes {
+  // Splash
+  static const String splash = '/';
+
   // Auth
   static const String login = '/login';
   static const String register = '/register';
@@ -57,8 +61,14 @@ class AppRoutes {
 }
 
 final appRouter = GoRouter(
-  initialLocation: AppRoutes.login,
+  initialLocation: AppRoutes.splash,
   routes: [
+    // Splash
+    GoRoute(
+      path: AppRoutes.splash,
+      builder: (context, state) => const SplashScreen(),
+    ),
+
     // Auth
     GoRoute(
       path: AppRoutes.login,

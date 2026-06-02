@@ -6,13 +6,13 @@ import 'package:alqa3a/core/utils/helpers/app_validator.dart';
 import 'package:alqa3a/core/widgets/app_button.dart';
 import 'package:alqa3a/core/widgets/app_text.dart';
 import 'package:alqa3a/core/widgets/app_text_field.dart';
-import 'package:alqa3a/features/auth/presentation/cubit/handeler/handel_register.dart';
-import 'package:alqa3a/features/auth/presentation/widgets/custom_text_span.dart';
+import 'package:alqa3a/shared/auth/presentation/cubit/handeler/handel_register.dart';
+import 'package:alqa3a/shared/auth/presentation/widgets/custom_text_span.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
-import '../widgets/role_widget.dart';
+import '../../../../shared/auth/presentation/widgets/role_widget.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

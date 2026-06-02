@@ -1,6 +1,6 @@
 import 'package:alqa3a/core/error/app_exception.dart';
 import 'package:alqa3a/core/utils/result.dart';
-import 'package:alqa3a/features/auth/domain/entities/user_entity.dart';
+import 'package:alqa3a/shared/auth/domain/entities/user_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -13,6 +13,18 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit({required AuthRepository authRepository})
     : _authRepository = authRepository,
       super(AuthInitial());
+
+
+  Future<void> checkAuth() async {
+    emit(AuthLoading());
+    final result = await _authRepository.getMe();
+    switch (result) {
+      case Success(data: var user):
+        emit(AuthSuccess(user));
+      case Failure(error: _):
+        emit(AuthInitial());
+    }
+  }
 
   Future<void> register({
     required String fullName,
@@ -137,6 +149,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthError(error.message));
     }
   }
+
 
   Future<void> logout() async {
     await _authRepository.logout();

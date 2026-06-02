@@ -3,11 +3,11 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../network/api_client.dart';
 
-import '../../features/auth/data/datasources/auth_remote_datasource.dart';
-import '../../features/auth/data/repositories/auth_repository_impl.dart';
-import '../../features/auth/domain/repositories/auth_repository.dart';
+import '../../shared/auth/data/datasources/auth_remote_datasource.dart';
+import '../../shared/auth/data/repositories/auth_repository_impl.dart';
+import '../../shared/auth/domain/repositories/auth_repository.dart';
 
-import '../../features/auth/presentation/cubit/auth_cubit.dart';
+import '../../shared/auth/presentation/cubit/auth_cubit.dart';
 
 final sl = GetIt.instance;
 

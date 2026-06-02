@@ -1,4 +1,4 @@
-import 'user_model.dart';
+import '../../../../shared/auth/data/models/user_model.dart';
 
 class AuthResponseModel {
   final String accessToken;

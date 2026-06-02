@@ -1,10 +1,10 @@
 import 'package:alqa3a/core/constants/api_constants.dart';
-import 'package:alqa3a/features/auth/domain/entities/user_entity.dart';
+import 'package:alqa3a/shared/auth/domain/entities/user_entity.dart';
 
 import '../../../../core/network/api_client.dart';
 import '../../../../core/error/app_exception.dart';
 import '../../../../core/utils/result.dart';
-import '../models/auth_response_model.dart';
+import '../../../../shared/auth/data/models/auth_response_model.dart';
 import '../models/user_model.dart';
 
 class AuthRemoteDataSource {

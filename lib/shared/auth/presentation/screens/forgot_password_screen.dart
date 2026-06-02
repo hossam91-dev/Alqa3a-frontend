@@ -6,7 +6,7 @@ import 'package:alqa3a/core/theme/app_colors.dart';
 import 'package:alqa3a/core/widgets/app_text.dart';
 import 'package:alqa3a/core/widgets/app_text_field.dart';
 
-import 'package:alqa3a/features/auth/presentation/cubit/handeler/handel_forgot_password.dart';
+import 'package:alqa3a/shared/auth/presentation/cubit/handeler/handel_forgot_password.dart';
 import 'package:flutter/material.dart';
 
 import 'package:gap/gap.dart';

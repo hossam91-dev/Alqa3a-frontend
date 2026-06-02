@@ -2,7 +2,7 @@ import 'package:alqa3a/core/theme/app_colors.dart';
 import 'package:alqa3a/core/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
-import '../../domain/entities/user_entity.dart';
+import '../../../../shared/auth/domain/entities/user_entity.dart';
 
 class RoleWidget extends StatefulWidget {
   final ValueChanged<UserRole>? onRoleChanged;

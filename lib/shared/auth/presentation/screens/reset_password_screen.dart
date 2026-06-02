@@ -4,7 +4,7 @@ import 'package:alqa3a/core/constants/svg_icons.dart';
 import 'package:alqa3a/core/widgets/app_button.dart';
 import 'package:alqa3a/core/widgets/app_text.dart';
 import 'package:alqa3a/core/widgets/app_text_field.dart';
-import 'package:alqa3a/features/auth/presentation/cubit/handeler/handel_reset_password.dart';
+import 'package:alqa3a/shared/auth/presentation/cubit/handeler/handel_reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

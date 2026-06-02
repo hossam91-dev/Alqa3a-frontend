@@ -3,11 +3,12 @@ import 'package:alqa3a/core/theme/app_colors.dart';
 import 'package:alqa3a/core/utils/app_toast.dart';
 import 'package:alqa3a/core/utils/helpers/otp_controller.dart';
 import 'package:alqa3a/core/widgets/custom_loading_indicator.dart';
-import 'package:alqa3a/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:alqa3a/features/auth/presentation/cubit/auth_state.dart';
-import 'package:alqa3a/features/auth/presentation/widgets/otp_form.dart';
+import 'package:alqa3a/shared/auth/presentation/cubit/auth_cubit.dart';
+import 'package:alqa3a/shared/auth/presentation/cubit/auth_state.dart';
+import 'package:alqa3a/shared/auth/presentation/widgets/otp_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -26,6 +27,7 @@ class _OtpScreenState extends State<OtpScreen> {
   void initState() {
     super.initState();
     _otpController = OtpController(length: 6);
+    _checkToken();
   }
 
   @override
@@ -33,9 +35,14 @@ class _OtpScreenState extends State<OtpScreen> {
     _otpController.dispose();
     super.dispose();
   }
-
+  Future<void> _checkToken() async {
+    const storage = FlutterSecureStorage();
+    final token = await storage.read(key: 'access_token');
+    print('Token in OTP Screen: $token');
+  }
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Center(
         child: BlocConsumer<AuthCubit, AuthState>(
