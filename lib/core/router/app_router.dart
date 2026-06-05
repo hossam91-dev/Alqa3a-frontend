@@ -7,6 +7,7 @@ import 'package:alqa3a/shared/auth/presentation/screens/reset_password_screen.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import '../../modules/halls/presentation/cubit/cubit.dart';
 import '../../modules/halls/presentation/user/screens/hall_details_screen.dart';
 import '../../shared/auth/presentation/screens/login_screen.dart';
 import '../../shared/auth/presentation/screens/register_screen.dart';
@@ -117,11 +118,13 @@ final appRouter = GoRouter(
 
     // Main Shell (Bottom Nav)
     ShellRoute(
-      builder: (context, state, child) => MainScaffold(child: child),
+      builder: (context, state, child) => BlocProvider(
+          create: (_)=> sl<HallsCubit>()..getHomeData(),
+          child: MainScaffold(child: child)),
       routes: [
         GoRoute(
           path: AppRoutes.home,
-          builder: (context, state) => const HomeScreen(),
+          builder: (context, state) =>  HomeScreen(),
         ),
         GoRoute(
           path: AppRoutes.browse,

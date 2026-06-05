@@ -7,12 +7,14 @@ class CustomNetworkImage extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit fit;
-  final double borderRadius;
+  final double? topLeft;
+  final double? topRight;
+  final double? bottomLeft;
+  final double? bottomRight;
   final BoxShape shape;
   final Widget? errorWidget;
   final Widget? placeholderWidget;
-  
-  
+
   final int? memCacheWidth;
   final int? memCacheHeight;
 
@@ -22,12 +24,15 @@ class CustomNetworkImage extends StatelessWidget {
     this.width,
     this.height,
     this.fit = BoxFit.cover,
-    this.borderRadius = 0.0,
     this.shape = BoxShape.rectangle,
     this.errorWidget,
     this.placeholderWidget,
     this.memCacheWidth,
     this.memCacheHeight,
+    this.topLeft = 0.0,
+    this.topRight = 0.0,
+    this.bottomLeft = 0.0,
+    this.bottomRight = 0.0,
   });
 
   @override
@@ -37,11 +42,16 @@ class CustomNetworkImage extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         shape: shape,
-        borderRadius: shape == BoxShape.rectangle 
-            ? BorderRadius.circular(borderRadius) 
+        borderRadius: shape == BoxShape.rectangle
+            ? BorderRadius.only(
+                topLeft: Radius.circular(topLeft ?? 0),
+                topRight: Radius.circular(topRight ?? 0),
+                bottomLeft: Radius.circular(bottomLeft ?? 0),
+                bottomRight: Radius.circular(bottomRight ?? 0),
+              )
             : null,
       ),
-      clipBehavior: Clip.antiAlias, 
+      clipBehavior: Clip.antiAlias,
       child: imageUrl.isEmpty
           ? _buildErrorWidget()
           : CachedNetworkImage(
@@ -51,35 +61,40 @@ class CustomNetworkImage extends StatelessWidget {
               fit: fit,
               memCacheWidth: memCacheWidth,
               memCacheHeight: memCacheHeight,
-              
-              placeholder: (context, url) => placeholderWidget ?? _buildShimmerPlaceholder(),
-              
-              errorWidget: (context, url, error) => errorWidget ?? _buildErrorWidget(),
+
+              placeholder: (context, url) =>
+                  placeholderWidget ?? _buildShimmerPlaceholder(),
+
+              errorWidget: (context, url, error) =>
+                  errorWidget ?? _buildErrorWidget(),
             ),
     );
   }
 
-  
   Widget _buildShimmerPlaceholder() {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,      
-      highlightColor: Colors.grey[100]!,  
-      period: const Duration(milliseconds: 1500), 
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      period: const Duration(milliseconds: 1500),
       child: Container(
         width: width ?? double.infinity,
         height: height ?? double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white, 
+          color: Colors.white,
           shape: shape,
-          borderRadius: shape == BoxShape.rectangle 
-              ? BorderRadius.circular(borderRadius) 
+          borderRadius: shape == BoxShape.rectangle
+              ? BorderRadius.only(
+            topLeft: Radius.circular(topLeft ?? 0),
+            topRight: Radius.circular(topRight ?? 0),
+            bottomLeft: Radius.circular(bottomLeft ?? 0),
+            bottomRight: Radius.circular(bottomRight ?? 0),
+          )
               : null,
         ),
       ),
     );
   }
 
-  
   Widget _buildErrorWidget() {
     return Container(
       width: width,

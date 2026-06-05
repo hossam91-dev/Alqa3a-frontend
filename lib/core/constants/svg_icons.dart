@@ -14,4 +14,12 @@ abstract class SvgIcons{
   static const String halls = '$_svgPath/halls.svg';
   static const String booking = '$_svgPath/booking.svg';
   static const String profile = '$_svgPath/profile.svg';
+  static const String arrowLeft = '$_svgPath/arrow-right.svg';
+  static const String favorite = '$_svgPath/heart-plus.svg';
+  static const String star = '$_svgPath/star.svg';
+  static const String map = '$_svgPath/map-pin.svg';
+  static const String money = '$_svgPath/banknote.svg';
+  static const String users = '$_svgPath/users.svg';
+  static const String ticketX = '$_svgPath/ticket-x.svg';
+  static const String starOff = '$_svgPath/star-off.svg';
 }

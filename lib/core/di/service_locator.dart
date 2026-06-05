@@ -1,6 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../modules/halls/data/datasources/halls_remote_datasource.dart';
+import '../../modules/halls/data/repositories/halls_repository_impl.dart';
+import '../../modules/halls/domain/repositories/halls_repository.dart';
+import '../../modules/halls/presentation/cubit/cubit.dart';
 import '../network/api_client.dart';
 
 import '../../shared/auth/data/datasources/auth_remote_datasource.dart';
@@ -28,4 +32,11 @@ Future<void> setupServiceLocator() async {
   );
 
   sl.registerFactory(() => AuthCubit(authRepository: sl()));
+
+  // ─── Halls ──────────────────────────────────────
+  sl.registerLazySingleton(() => HallsRemoteDataSource(sl()));
+
+  sl.registerLazySingleton<HallsRepository>(() => HallsRepositoryImpl(sl()));
+
+  sl.registerFactory(() => HallsCubit(hallsRepository: sl()));
 }

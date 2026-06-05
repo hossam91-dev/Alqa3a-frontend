@@ -13,6 +13,8 @@ abstract class ApiConstants {
 
   // Halls Endpoints
   static const String hallsEndpoint = '/halls';
+  static const String popularHallsEndpoint = '$hallsEndpoint/popular';
+  static const String hallsWithDiscountsEndpoint = '$hallsEndpoint/with-discounts';
 
   // Blocked Dates Endpoints
   static const String blockedDatesEndpoint = '/blocked-dates';
