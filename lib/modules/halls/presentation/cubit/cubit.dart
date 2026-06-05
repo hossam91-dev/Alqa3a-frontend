@@ -1,3 +1,5 @@
+import 'dart:async'; // استيراد الـ Timer
+
 import 'package:alqa3a/modules/halls/domain/repositories/halls_repository.dart';
 import 'package:alqa3a/modules/halls/presentation/cubit/state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,9 +7,10 @@ import '../../../../core/utils/result.dart';
 
 class HallsCubit extends Cubit<HallsState> {
   final HallsRepository _hallsRepository;
+  Timer? _searchTimer;
+  
   HallsCubit({required HallsRepository hallsRepository})
     : _hallsRepository = hallsRepository,
-
       super(HallsInitial());
 
   Future<void> getHomeData() async {
@@ -70,6 +73,33 @@ class HallsCubit extends Cubit<HallsState> {
       case Failure(error: var error):
         emit(HallsError(error.message));
     }
+  }
+
+  void searchHalls(String query) {
+
+    _searchTimer?.cancel();
+
+
+    _searchTimer = Timer(const Duration(milliseconds: 500), () {
+      final trimmedQuery = query.trim();
+      if (trimmedQuery.isEmpty) {
+        getHalls();
+        return;
+      }
+
+      final number = int.tryParse(trimmedQuery);
+      if (number != null) {
+        getHalls(capacity: number);
+      } else {
+        getHalls(region: trimmedQuery);
+      }
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _searchTimer?.cancel();
+    return super.close();
   }
 
   Future<void> getHallById(String id) async {

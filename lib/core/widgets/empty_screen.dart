@@ -20,6 +20,7 @@ class EmptyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       spacing: AppGaps.g6,
       children: [
         SvgPicture.asset(

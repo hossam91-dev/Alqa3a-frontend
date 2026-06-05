@@ -2,6 +2,7 @@ abstract class AppGaps {
   static const double g4 = 4.0;
   static const double g6 = 6.0;
   static const double g8 = 8.0;
+  static const double g10 = 10.0;
   static const double g12 = 12.0;
   static const double g16 = 16.0;
   static const double g20 = 20.0;

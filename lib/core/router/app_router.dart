@@ -13,7 +13,7 @@ import '../../shared/auth/presentation/screens/login_screen.dart';
 import '../../shared/auth/presentation/screens/register_screen.dart';
 import '../../shared/auth/presentation/screens/otp_screen.dart';
 import '../../modules/halls/presentation/user/screens/home_screen.dart';
-import '../../modules/halls/presentation/user/screens/browse_screen.dart';
+import '../../modules/halls/presentation/user/screens/halls_screen.dart';
 import '../../modules/smart_match/presentation/screens/smart_match_screen.dart';
 import '../../modules/smart_match/presentation/screens/smart_match_results_screen.dart';
 import '../../modules/bookings/presentation/screens/booking_screen.dart';
@@ -36,7 +36,7 @@ class AppRoutes {
 
   // User
   static const String home = '/home';
-  static const String browse = '/browse';
+  static const String halls = '/halls';
   static const String hallDetails = '/halls/:id';
   static const String smartMatch = '/smart-match';
   static const String smartMatchResults = '/smart-match/results';
@@ -118,17 +118,19 @@ final appRouter = GoRouter(
 
     // Main Shell (Bottom Nav)
     ShellRoute(
-      builder: (context, state, child) => BlocProvider(
-          create: (_)=> sl<HallsCubit>()..getHomeData(),
-          child: MainScaffold(child: child)),
+      builder: (context, state, child) => MainScaffold(child: child),
       routes: [
         GoRoute(
           path: AppRoutes.home,
-          builder: (context, state) =>  HomeScreen(),
+          builder: (context, state) =>  BlocProvider(
+              create: (_)=> sl<HallsCubit>()..getHomeData(),
+              child: HomeScreen()),
         ),
         GoRoute(
-          path: AppRoutes.browse,
-          builder: (context, state) => const BrowseScreen(),
+          path: AppRoutes.halls,
+          builder: (context, state) => BlocProvider(
+              create: (_)=> sl<HallsCubit>()..getHalls(),
+              child: const HallsScreen()),
         ),
         GoRoute(
           path: AppRoutes.myBookings,

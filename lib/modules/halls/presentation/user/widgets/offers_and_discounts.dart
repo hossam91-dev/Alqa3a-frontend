@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
+import '../../../../../core/widgets/error_screen.dart';
 import 'halls_with_discounts_empty.dart';
 
 class OffersAndDiscounts extends StatelessWidget {
@@ -29,7 +30,7 @@ class OffersAndDiscounts extends StatelessWidget {
 
         }
         if(state is DiscountsError){
-          return Center(child: AppText.title(state.message),);
+          return Center(child: ErrorScreen(message: state.message,));
         }
         if (state is HomeLoaded || state is PopularError){
           if(state.hallsWithDiscounts.isEmpty){

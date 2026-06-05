@@ -15,7 +15,7 @@ class MainScaffold extends StatelessWidget {
   int _getCurrentIndex(BuildContext context) {
     final location = GoRouterState.of(context).uri.toString();
     if (location.startsWith(AppRoutes.home)) return 0;
-    if (location.startsWith(AppRoutes.browse)) return 1;
+    if (location.startsWith(AppRoutes.halls)) return 1;
     if (location.startsWith(AppRoutes.myBookings)) return 2;
     if (location.startsWith(AppRoutes.profile)) return 3;
     return 0;
@@ -24,7 +24,7 @@ class MainScaffold extends StatelessWidget {
   void _onItemTapped(BuildContext context, int index) {
     final routes = [
       AppRoutes.home,
-      AppRoutes.browse,
+      AppRoutes.halls,
       AppRoutes.myBookings,
       AppRoutes.profile,
     ];
