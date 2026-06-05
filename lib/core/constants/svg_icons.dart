@@ -22,4 +22,5 @@ abstract class SvgIcons{
   static const String users = '$_svgPath/users.svg';
   static const String ticketX = '$_svgPath/ticket-x.svg';
   static const String starOff = '$_svgPath/star-off.svg';
+  static const String error = '$_svgPath/ban.svg';
 }

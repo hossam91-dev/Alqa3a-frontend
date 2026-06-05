@@ -2,6 +2,7 @@ import 'package:alqa3a/core/constants/app_strings.dart';
 import 'package:alqa3a/core/constants/gaps.dart';
 import 'package:alqa3a/core/constants/svg_icons.dart';
 import 'package:alqa3a/core/widgets/empty_screen.dart';
+import 'package:alqa3a/core/widgets/error_screen.dart';
 import 'package:alqa3a/modules/halls/presentation/cubit/cubit.dart';
 import 'package:alqa3a/core/widgets/hall_card.dart';
 import 'package:flutter/material.dart';
@@ -28,10 +29,10 @@ class MostPopularHalls extends StatelessWidget {
             child: Center(child: CustomLoadingIndicator(petalColor: AppColors.primary,)),
           );
         }
-        if(state is HomeError){
+        if(state is PopularError){
           return SliverFillRemaining(
             hasScrollBody: false,
-            child: Center(child: AppText.title(state.message),),
+            child: Center(child: ErrorScreen(message: state.message,)),
           );
         }
         if (state is HomeLoaded){

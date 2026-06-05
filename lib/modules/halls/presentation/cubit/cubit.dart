@@ -10,30 +10,45 @@ class HallsCubit extends Cubit<HallsState> {
 
       super(HallsInitial());
 
-
   Future<void> getHomeData() async {
     emit(HomeLoading());
 
     final results = await Future.wait([
       _hallsRepository.getHallsWithDiscounts(),
-      _hallsRepository.getPopularHalls()
+      _hallsRepository.getPopularHalls(),
     ]);
     final discountsResult = results[0];
     final popularResult = results[1];
 
-
-    if (popularResult is Failure || discountsResult is Failure) {
+    if (popularResult is Failure) {
       final error = popularResult is Failure
           ? (popularResult as Failure).error
-          : (discountsResult as Failure).error;
-      emit(HomeError(error.message));
+          : null;
+      emit(PopularError(error.message));
+      return;
+    }
+    if (discountsResult is Failure) {
+      final error = discountsResult is Failure
+          ? (discountsResult as Failure).error
+          : null;
+      emit(DiscountsError(error.message));
       return;
     }
 
-    emit(HomeLoaded(
-      popularHalls: (popularResult as Success).data,
-      hallsWithDiscounts: (discountsResult as Success).data,
-    ));
+    // if (popularResult is Failure || discountsResult is Failure) {
+    //   final error = popularResult is Failure
+    //       ? (popularResult as Failure).error
+    //       : (discountsResult as Failure).error;
+    //   emit(HomeError(error.message));
+    //   return;
+    // }
+
+    emit(
+      HomeLoaded(
+        popularHalls: (popularResult as Success).data,
+        hallsWithDiscounts: (discountsResult as Success).data,
+      ),
+    );
   }
 
   Future<void> getHalls({

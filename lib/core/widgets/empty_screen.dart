@@ -9,11 +9,12 @@ class EmptyScreen extends StatelessWidget {
   final String message;
   final String icon;
   final String title;
+  final Color? iconColor;
   const EmptyScreen({
     super.key,
     required this.message,
     required this.icon,
-    required this.title,
+    required this.title, this.iconColor,
   });
 
   @override
@@ -21,13 +22,14 @@ class EmptyScreen extends StatelessWidget {
     return Column(
       spacing: AppGaps.g6,
       children: [
-        AppText.headline(title),
-        AppText.body(message,textAlign: TextAlign.center),
         SvgPicture.asset(
           icon,
           width: 50,
-          colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn,),
+          colorFilter: ColorFilter.mode(iconColor?? AppColors.primary, BlendMode.srcIn,),
         ),
+        AppText.headline(title),
+        AppText.body(message,textAlign: TextAlign.center),
+
       ],
     );
   }
