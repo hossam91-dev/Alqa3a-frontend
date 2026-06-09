@@ -63,4 +63,27 @@ static const String noOffersFound = 'لا توجد عروض نشطة في الو
 static const String comingSoon = 'انتظرنا قريباً!';
 static const String noHallsFound = 'لا يوجد قاعات متاحه الان';
 static const String popularHallsFullyBooked = 'القاعات الأكثر رواجاً محجوزة بالكامل حالياً.. تابعنا لتكون أول من يحجز فور إتاحتها!';
+static const String bookingSubmit = 'تأكيد الحجز';
+static const String bookingDate = 'تاريخ الحجز';
+static const String gustCount = 'عدد المدعوين';
+static const String additionalNotes = 'ملاحظات إضافية';
+static const String additionalNotesHint = 'اكتب اي طلبات خاصه هنا...';
+static const String paymentMethod = 'طريقة الدفع';
+static const String changeDate = 'تغيير التاريخ';
+static const String expectedGustCount = 'عدد الأشخاص المتوقع';
+static const String creditCard = 'بطاقة ائتمان';
+static const String cash = 'نقداً';
+static const String wallet = 'محفظة';
+static const String bookingStatus = 'حالة الحجز';
+static const String bookingRequestSuccess = 'تم إرسال طلب الحجز بنجاح!';
+static const String bookingStatusHint = 'سنعد بمشاركتكم لحظاتكم السعيدة في قاعاتنا.';
+static const String ownerReviewingRequest = 'يقوم صاحب القاعة حالياً بمراجعة طلبك. سيصلك إشعار فور تأكيد الحجز.';
+static const String bookingDetails = 'تفاصيل الحجز';
+static const String date = 'التاريخ';
+static const String totalPrice = 'إجمالي المبلغ';
+static const String talkToUs = 'تحدث معنا';
+static const String helpHint = 'يمكنك التواصل مع خدمة العملاء أو صاحب القاعة مباشرة لمناقشة التفاصيل الإضافية.';
+static const String doYouHaveQuestion = 'هل لديك استفسار؟';
+static const String backToHome = 'العودة للرئيسية';
+
 }

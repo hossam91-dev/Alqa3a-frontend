@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'dio_helper.dart';
 import 'api_response.dart';
 import '../error/app_exception.dart';
@@ -73,6 +74,9 @@ class ApiClient {
     } on DioException catch (e) {
       return Failure(_handleError(e));
     } catch (e) {
+      if (kDebugMode) {
+        print('API Error: $e');
+      }
       return Failure(
         const AppException(message: 'حدث خطأ غير متوقع'),
       );

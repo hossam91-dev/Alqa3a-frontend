@@ -1,3 +1,4 @@
+import 'package:alqa3a/core/widgets/back_button.dart';
 import 'package:flutter/material.dart';
 
 class HallDetailsScreen extends StatelessWidget {
@@ -8,7 +9,11 @@ class HallDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Hall Details - $hallId')),
+      appBar: AppBar(
+          title: Text('Hall Details - $hallId'
+          ),
+        leading: const CustomBackButton(),
+      ),
       body: Center(child: Text('Details for Hall ID: $hallId')),
     );
   }

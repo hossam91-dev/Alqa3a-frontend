@@ -1,15 +1,15 @@
-import 'dart:ffi';
 
 import 'package:alqa3a/core/constants/app_padding.dart';
 import 'package:alqa3a/core/constants/svg_icons.dart';
+import 'package:alqa3a/core/router/app_router.dart';
 import 'package:alqa3a/core/widgets/custom_loading_indicator.dart';
 import 'package:alqa3a/core/widgets/empty_screen.dart';
 import 'package:alqa3a/core/widgets/hall_card.dart';
-import 'package:alqa3a/modules/halls/domain/entities/hall_entity.dart';
 import 'package:alqa3a/modules/halls/presentation/cubit/cubit.dart';
 import 'package:alqa3a/modules/halls/presentation/cubit/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../widgets/halls_search_bar.dart';
 import 'package:gap/gap.dart';
 
@@ -79,14 +79,17 @@ class _HallsScreenState extends State<HallsScreen> {
                         ),
                       );
                     }
-                    // استخدام SliverList مباشرة داخل CustomScrollView
+
                     return SliverList.separated(
                       itemCount: state.halls.length,
                       separatorBuilder: (context, index) =>
                           const Gap(AppGaps.g20),
                       itemBuilder: (context, index) {
                         final hall = state.halls[index];
-                        return HallCard(hall: hall);
+                        return HallCard(hall: hall,
+                          onBookPressed: ()=>context.push(AppRoutes.bookingPath(hall.id)),
+                          onDetailsPressed: ()=> context.push(AppRoutes.hallDetailsPath(hall.id)),
+                        );
                       },
                     );
                   }

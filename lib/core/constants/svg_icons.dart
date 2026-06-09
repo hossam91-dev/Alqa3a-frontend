@@ -25,4 +25,9 @@ abstract class SvgIcons{
   static const String error = '$_svgPath/ban.svg';
   static const String boxOpen = '$_svgPath/package-open.svg';
   static const String search = '$_svgPath/search.svg';
+  static const String wallet = '$_svgPath/wallet.svg';
+  static const String creditCard = '$_svgPath/credit-card.svg';
+  static const String notes = '$_svgPath/notebook-pen.svg';
+  static const String menuHorizontal = '$_svgPath/ellipsis.svg';
+  static const String info = '$_svgPath/info.svg';
 }

@@ -1,6 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../modules/bookings/data/datasources/bookings_remote_datasource.dart';
+import '../../modules/bookings/data/repositories/bookings_repository_impl.dart';
+import '../../modules/bookings/domain/repositories/bookings_repository.dart';
+import '../../modules/bookings/presentation/cubit/cubit.dart';
 import '../../modules/halls/data/datasources/halls_remote_datasource.dart';
 import '../../modules/halls/data/repositories/halls_repository_impl.dart';
 import '../../modules/halls/domain/repositories/halls_repository.dart';
@@ -39,4 +43,13 @@ Future<void> setupServiceLocator() async {
   sl.registerLazySingleton<HallsRepository>(() => HallsRepositoryImpl(sl()));
 
   sl.registerFactory(() => HallsCubit(hallsRepository: sl()));
+
+  // ─── Bookings ──────────────────────────────────
+  sl.registerLazySingleton(() => BookingsRemoteDataSource(sl()));
+
+  sl.registerLazySingleton<BookingsRepository>(
+    () => BookingsRepositoryImpl(sl()),
+  );
+
+  sl.registerFactory(() => BookingsCubit(bookingsRepository: sl()));
 }

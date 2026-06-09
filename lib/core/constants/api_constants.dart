@@ -21,7 +21,8 @@ abstract class ApiConstants {
 
   // Bookings Endpoints
   static const String bookingsEndpoint = '/bookings';
-  static const String userBookingsEndpoint = '/bookings/my';
+  static const String userBookingsEndpoint = '$bookingsEndpoint/my';
+  static const String cancelBooking = '/cancel';
 
   // Smart Match Endpoints
   static const String smartMatchEndpoint = '/smart-match';

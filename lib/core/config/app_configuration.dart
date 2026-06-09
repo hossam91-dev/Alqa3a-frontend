@@ -1,3 +1,4 @@
+import 'package:alqa3a/core/utils/helpers/date_format_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -9,6 +10,7 @@ class AppConfiguration {
     await _initializeGoogleSignIn();
     await _initializeServiceLocator();
     _configureSystemUI();
+    _configureDate();
   }
 
   static Future<void> _initializeGoogleSignIn() async {
@@ -29,5 +31,8 @@ class AppConfiguration {
         statusBarBrightness: Brightness.light,
       ),
     );
+  }
+  static void _configureDate(){
+    DateFormatHelper.initArabic();
   }
 }

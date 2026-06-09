@@ -1,5 +1,6 @@
 import 'package:alqa3a/core/di/service_locator.dart';
 import 'package:alqa3a/core/widgets/main_scaffold.dart';
+import 'package:alqa3a/modules/bookings/presentation/user/screens/booking_details_screen.dart';
 import 'package:alqa3a/shared/auth/domain/entities/user_entity.dart';
 import 'package:alqa3a/shared/auth/presentation/cubit/auth_cubit.dart';
 import 'package:alqa3a/shared/auth/presentation/screens/forgot_password_screen.dart';
@@ -7,6 +8,8 @@ import 'package:alqa3a/shared/auth/presentation/screens/reset_password_screen.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import '../../modules/bookings/presentation/cubit/cubit.dart';
+import '../../modules/bookings/presentation/user/screens/my_bookings_screen.dart';
 import '../../modules/halls/presentation/cubit/cubit.dart';
 import '../../modules/halls/presentation/user/screens/hall_details_screen.dart';
 import '../../shared/auth/presentation/screens/login_screen.dart';
@@ -16,9 +19,8 @@ import '../../modules/halls/presentation/user/screens/home_screen.dart';
 import '../../modules/halls/presentation/user/screens/halls_screen.dart';
 import '../../modules/smart_match/presentation/screens/smart_match_screen.dart';
 import '../../modules/smart_match/presentation/screens/smart_match_results_screen.dart';
-import '../../modules/bookings/presentation/screens/booking_screen.dart';
-import '../../modules/bookings/presentation/screens/booking_status_screen.dart';
-import '../../modules/bookings/presentation/screens/my_bookings_screen.dart';
+import '../../modules/bookings/presentation/user/screens/booking_screen.dart';
+import '../../modules/bookings/presentation/user/screens/booking_status_screen.dart';
 import '../../modules/saved_halls/presentation/screens/saved_halls_screen.dart';
 import '../../modules/profile/presentation/screens/profile_screen.dart';
 import '../widgets/splash_screen.dart';
@@ -43,6 +45,7 @@ class AppRoutes {
   static const String booking = '/booking/:hallId';
   static const String bookingStatus = '/bookings/:id/status';
   static const String myBookings = '/my-bookings';
+  static const String bookingDetails = '/bookings-details/:id';
   static const String savedHalls = '/saved-halls';
   static const String profile = '/profile';
 
@@ -53,6 +56,7 @@ class AppRoutes {
   static String hallDetailsPath(String id) => '/halls/$id';
 
   static String bookingPath(String hallId) => '/booking/$hallId';
+  static  String bookingDetailsPath(String id)=>'/bookings-details/$id';
 
   static String bookingStatusPath(String id) => '/bookings/$id/status';
 
@@ -134,7 +138,9 @@ final appRouter = GoRouter(
         ),
         GoRoute(
           path: AppRoutes.myBookings,
-          builder: (context, state) => const MyBookingsScreen(),
+          builder: (context, state) => BlocProvider(
+              create: (_)=> sl<BookingsCubit>()..getMyBookings(),
+              child: const MyBookingsScreen()),
         ),
         GoRoute(
           path: AppRoutes.profile,
@@ -164,12 +170,21 @@ final appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.booking,
       builder: (context, state) =>
-          BookingScreen(hallId: state.pathParameters['hallId']!),
+          BlocProvider(
+            create: (_)=>sl<BookingsCubit>(),
+              child: BookingScreen(hallId: state.pathParameters['hallId']!)),
     ),
     GoRoute(
       path: AppRoutes.bookingStatus,
       builder: (context, state) =>
           BookingStatusScreen(bookingId: state.pathParameters['id']!),
+    ),
+    GoRoute(
+      path: AppRoutes.bookingDetails,
+      builder: (context, state) =>
+          BlocProvider(
+            create: (_)=>sl<BookingsCubit>()..getBookingById(state.pathParameters['id']!),
+              child: BookingDetailsScreen(bookingId: state.pathParameters['id']!)),
     ),
 
     // Saved Halls

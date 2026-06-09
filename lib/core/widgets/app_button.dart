@@ -9,6 +9,8 @@ class AppButton extends StatelessWidget {
   final VoidCallback onPressed;
   final double? height;
   final AppButtonStyle style;
+  final Color? backgroundColor;
+  final Color? textColor;
 
   const AppButton({
     super.key,
@@ -16,6 +18,8 @@ class AppButton extends StatelessWidget {
     required this.onPressed,
     this.height,
     this.style = AppButtonStyle.filled,
+    this.backgroundColor,
+    this.textColor,
   });
 
   const AppButton.outlined({
@@ -23,6 +27,8 @@ class AppButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.height,
+    this.backgroundColor,
+    this.textColor,
   }) : style = AppButtonStyle.outlined;
 
   @override
@@ -31,7 +37,7 @@ class AppButton extends StatelessWidget {
       return OutlinedButton(
         style: OutlinedButton.styleFrom(
           minimumSize: Size(double.infinity, height ?? 45),
-          side: const BorderSide(color: AppColors.primary),
+          side: BorderSide(color: backgroundColor ?? AppColors.primary),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -39,7 +45,7 @@ class AppButton extends StatelessWidget {
         onPressed: onPressed,
         child: AppText.button(
           text,
-          color: AppColors.primary,
+          color: textColor ?? AppColors.primary,
         ),
       );
     }
@@ -47,7 +53,7 @@ class AppButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         minimumSize: Size(double.infinity, height ?? 45),
-        backgroundColor: AppColors.primary,
+        backgroundColor: backgroundColor ?? AppColors.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -55,7 +61,7 @@ class AppButton extends StatelessWidget {
       onPressed: onPressed,
       child: AppText.button(
         text,
-        color: AppColors.white,
+        color: textColor ?? AppColors.white,
       ),
     );
   }
