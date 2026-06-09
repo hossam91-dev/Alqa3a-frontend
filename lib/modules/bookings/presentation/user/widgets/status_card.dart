@@ -46,8 +46,8 @@ class StatusCard extends StatelessWidget {
                   ],
                 ),
                 const Gap(AppGaps.g8),
-                const AppText.body(
-                  AppStrings.ownerReviewingRequest,
+                 AppText.body(
+                  getBookingStatusLabel(booking.status),
                   fontSize: 12,
                   color: AppColors.textMuted,
                 ),
@@ -72,5 +72,21 @@ class StatusCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String getBookingStatusLabel(BookingStatus status) {
+    switch(status){
+
+      case BookingStatus.pending:
+        return AppStrings.ownerReviewingRequest;
+      case BookingStatus.confirmed:
+       return 'تم قبول طلب الحجز';
+      case BookingStatus.rejected:
+       return 'هذه الحجز مرفوض';
+      case BookingStatus.cancelled:
+        return 'هذه الحجز ملغي';
+      case BookingStatus.completed:
+       return 'هذا الحجز مكتمل';
+    }
   }
 }

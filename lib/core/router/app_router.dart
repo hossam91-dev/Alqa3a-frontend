@@ -12,6 +12,8 @@ import '../../modules/bookings/presentation/cubit/cubit.dart';
 import '../../modules/bookings/presentation/user/screens/my_bookings_screen.dart';
 import '../../modules/halls/presentation/cubit/cubit.dart';
 import '../../modules/halls/presentation/user/screens/hall_details_screen.dart';
+import '../../modules/smart_match/domain/entities/smart_match_result_entity.dart';
+import '../../modules/smart_match/presentation/cubit/cubit.dart';
 import '../../shared/auth/presentation/screens/login_screen.dart';
 import '../../shared/auth/presentation/screens/register_screen.dart';
 import '../../shared/auth/presentation/screens/otp_screen.dart';
@@ -159,11 +161,17 @@ final appRouter = GoRouter(
     // Smart Match
     GoRoute(
       path: AppRoutes.smartMatch,
-      builder: (context, state) => const SmartMatchScreen(),
+      builder: (context, state) => BlocProvider(
+          create: (_)=>sl<SmartMatchCubit>(),
+          child: const SmartMatchScreen()),
     ),
     GoRoute(
       path: AppRoutes.smartMatchResults,
-      builder: (context, state) => const SmartMatchResultsScreen(),
+
+      builder: (context, state) {
+        final results = state.extra as List<SmartMatchResultEntity>;
+        return SmartMatchResultsScreen(results: results,);
+      },
     ),
 
     // Booking

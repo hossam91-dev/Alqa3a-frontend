@@ -32,7 +32,7 @@ class CancelBookingButton extends StatelessWidget {
           onPressed: () {
             context.read<BookingsCubit>().cancelBooking(bookingId);
           },
-          height: 40,
+          height: 35,
         );
       },
     );

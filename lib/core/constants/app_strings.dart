@@ -85,5 +85,14 @@ static const String talkToUs = 'تحدث معنا';
 static const String helpHint = 'يمكنك التواصل مع خدمة العملاء أو صاحب القاعة مباشرة لمناقشة التفاصيل الإضافية.';
 static const String doYouHaveQuestion = 'هل لديك استفسار؟';
 static const String backToHome = 'العودة للرئيسية';
+static const String smartMatch = 'المطابقة الذكية';
+static const String findThePerfectHall = 'ابحث عن القاعة المثالية';
+static const String smartMatchHint = 'دع نظامنا الذكي يختار لكِ أرقى الوجهات التي تناسب ذوقكِ وتاريخ زفافك.';
+static const String area = 'المنطقة';
+static const String dateOfTheParty = 'تاريخ الحفل';
+static const String expectedBudget = 'الميزانية المتوقعة';
+static const String from = 'من';
+static const String to = 'الي';
+static const String smartMatchingResults = 'نتائج المطابقة الذكية';
 
 }

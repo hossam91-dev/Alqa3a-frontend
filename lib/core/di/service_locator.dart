@@ -9,6 +9,10 @@ import '../../modules/halls/data/datasources/halls_remote_datasource.dart';
 import '../../modules/halls/data/repositories/halls_repository_impl.dart';
 import '../../modules/halls/domain/repositories/halls_repository.dart';
 import '../../modules/halls/presentation/cubit/cubit.dart';
+import '../../modules/smart_match/data/datasources/smart_match_remote_datasource.dart';
+import '../../modules/smart_match/data/repositories/smart_match_repository_impl.dart';
+import '../../modules/smart_match/domain/repositories/smart_match_repository.dart';
+import '../../modules/smart_match/presentation/cubit/cubit.dart';
 import '../network/api_client.dart';
 
 import '../../shared/auth/data/datasources/auth_remote_datasource.dart';
@@ -52,4 +56,14 @@ Future<void> setupServiceLocator() async {
   );
 
   sl.registerFactory(() => BookingsCubit(bookingsRepository: sl()));
+
+  // ─── Smart Match ───────────────────────────────
+
+  sl.registerLazySingleton(() => SmartMatchRemoteDataSource(sl()));
+
+  sl.registerLazySingleton<SmartMatchRepository>(
+    () => SmartMatchRepositoryImpl(sl()),
+  );
+
+  sl.registerFactory(() => SmartMatchCubit(smartMatchRepository: sl()));
 }

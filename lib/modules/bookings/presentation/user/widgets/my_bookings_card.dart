@@ -75,7 +75,7 @@ class MyBookingsCard extends StatelessWidget {
                     onPressed: () {
                       context.push(AppRoutes.bookingDetailsPath(booking.id));
                     },
-                    height: 40,
+                    height: 35,
                   ),
                 ),
                 booking.status.isCancelled==true?SizedBox.shrink():
