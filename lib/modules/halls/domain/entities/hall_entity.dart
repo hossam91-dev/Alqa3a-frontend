@@ -1,3 +1,5 @@
+import '../../../../core/interfaces/hall_saveable.dart';
+
 class AmenityEntity {
   final bool parking;
   final bool catering;
@@ -30,13 +32,20 @@ class HallImageEntity {
   });
 }
 
-class HallEntity {
+class HallEntity implements HallSaveable {
+  @override
   final String id;
+  @override
   final String name;
+  @override
   final String region;
+  @override
   final String address;
+  @override
   final int capacity;
+  @override
   final double pricePerEvent;
+  @override
   final double avgRating;
   final bool isActive;
   final AmenityEntity amenities;
@@ -55,6 +64,7 @@ class HallEntity {
     required this.images,
   });
 
+  @override
   String? get coverImageUrl {
     try {
       return images.firstWhere((img) => img.isCover).url;

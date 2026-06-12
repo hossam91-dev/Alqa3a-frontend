@@ -1,3 +1,4 @@
+import 'package:alqa3a/core/widgets/save_hall_button.dart';
 import 'package:alqa3a/modules/smart_match/domain/entities/smart_match_result_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -22,16 +23,14 @@ class SmartMatchCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 0.5,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Column(
         spacing: AppGaps.g10,
         children: [
           Stack(
             children: [
               CustomNetworkImage(
-                imageUrl: result.coverImage ?? '',
+                imageUrl: result.coverImageUrl ?? '',
                 width: double.infinity,
                 height: MediaQuery.sizeOf(context).height * 0.27,
                 topRight: 20,
@@ -40,13 +39,7 @@ class SmartMatchCard extends StatelessWidget {
               Positioned(
                 top: AppGaps.g12,
                 right: AppGaps.g12,
-                child: GestureDetector(
-                  onTap:onDetailsTap ,
-                  child: SvgPicture.asset(SvgIcons.favorite,colorFilter: ColorFilter.mode(
-                    AppColors.error,
-                    BlendMode.srcIn,
-                  ),),
-                ),
+                child: SaveHallButton(hallId: result.id,hall: result,),
               ),
               Positioned(
                 top: AppGaps.g12,
@@ -122,14 +115,12 @@ class SmartMatchCard extends StatelessWidget {
                   ],
                 ),
                 Expanded(
-                  child: AppButton.outlined(
+                  child: AppButton(
                     text: AppStrings.details,
                     onPressed: () {
-                      context.push(
-                        AppRoutes.hallDetailsPath(result.id),
-                      );
+                      context.push(AppRoutes.hallDetailsPath(result.id));
                     },
-                    textColor: AppColors.primary,
+
                     height: 35,
                   ),
                 ),

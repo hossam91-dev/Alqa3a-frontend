@@ -5,6 +5,7 @@ import 'package:alqa3a/core/theme/app_colors.dart';
 import 'package:alqa3a/core/widgets/app_button.dart';
 import 'package:alqa3a/core/widgets/app_text.dart';
 import 'package:alqa3a/core/widgets/custom_network_image.dart';
+import 'package:alqa3a/core/widgets/save_hall_button.dart';
 import 'package:alqa3a/modules/halls/domain/entities/hall_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,14 +15,12 @@ class HallCard extends StatelessWidget {
   final HallEntity hall;
   final VoidCallback? onBookPressed;
   final VoidCallback? onDetailsPressed;
-  final VoidCallback? onFavoritePressed;
 
   const HallCard({
     super.key,
     required this.hall,
     this.onBookPressed,
     this.onDetailsPressed,
-    this.onFavoritePressed,
   });
 
   @override
@@ -47,23 +46,7 @@ class HallCard extends StatelessWidget {
               Positioned(
                 top: 10,
                 right: 10,
-                child: GestureDetector(
-                  onTap: onFavoritePressed,
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: AppColors.white.withAlpha(150),
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    child: SvgPicture.asset(
-                       SvgIcons.favorite,
-                      colorFilter: ColorFilter.mode(
-                         AppColors.primary,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                ),
+                child: SaveHallButton(hallId: hall.id,hall: hall,)
               ),
             ],
           ),
@@ -167,3 +150,5 @@ class HallCard extends StatelessWidget {
     );
   }
 }
+
+

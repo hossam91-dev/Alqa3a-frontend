@@ -46,8 +46,8 @@ class LoginHandler extends StatelessWidget {
       builder: (context, state) {
         if (state is AuthLoading) {
           return const Center(
-            child: CustomLoadingIndicator(
-              petalColor: AppColors.primary,
+            child: CustomLoading(
+
             ),
           );
         }

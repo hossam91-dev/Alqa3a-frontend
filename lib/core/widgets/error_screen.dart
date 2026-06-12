@@ -12,41 +12,28 @@ class ErrorScreen extends StatelessWidget {
   const ErrorScreen({
     super.key,
     required this.message,
-
-
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(AppGaps.g8),
-      child: Container(
-        padding: EdgeInsets.all(AppGaps.g16),
-        decoration: BoxDecoration(
-            color: AppColors.errorBg,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-                color: AppColors.error,
-                width: 1
-            )
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          spacing: AppGaps.g6,
-          children: [
-            SvgPicture.asset(
-              SvgIcons.error,
-              width: 50,
-              colorFilter: ColorFilter.mode(
-                AppColors.error,
-                BlendMode.srcIn,
-              ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: AppGaps.g6,
+        children: [
+          SvgPicture.asset(
+            SvgIcons.error,
+            width: 50,
+            colorFilter: ColorFilter.mode(
+              AppColors.error,
+              BlendMode.srcIn,
             ),
-            AppText.headline('خطا',color: AppColors.error,fontSize: 20,),
-            AppText.body(message, textAlign: TextAlign.center),
+          ),
+          AppText.headline('خطا',color: AppColors.error,fontSize: 20,),
+          AppText.body(message, textAlign: TextAlign.center),
 
-          ],
-        ),
+        ],
       ),
     );
   }

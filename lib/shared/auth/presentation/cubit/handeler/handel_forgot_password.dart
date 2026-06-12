@@ -40,7 +40,7 @@ class ForgotPasswordHandler extends StatelessWidget {
       builder: (context, state) {
         if (state is AuthLoading) {
           return Center(
-            child: CustomLoadingIndicator(petalColor: AppColors.primary),
+            child: CustomLoading(),
           );
         }
         return AppButton(

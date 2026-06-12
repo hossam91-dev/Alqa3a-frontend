@@ -49,7 +49,7 @@ class SmartMatchResultModel {
       pricePerEvent: pricePerEvent,
       avgRating: avgRating,
       score: score,
-      coverImage: coverImage,
+      coverImageUrl: coverImage,
     );
   }
 }

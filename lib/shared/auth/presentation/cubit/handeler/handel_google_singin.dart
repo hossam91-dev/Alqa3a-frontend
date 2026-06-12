@@ -40,7 +40,7 @@ class GoogleSignInHandler extends StatelessWidget {
       builder: (context, state) {
         if (state is AuthGoogleSingInLoading) {
           return const Center(
-            child: CustomLoadingIndicator(petalColor: AppColors.primary),
+            child: CustomLoading(),
           );
         }
         return OutlinedButton(

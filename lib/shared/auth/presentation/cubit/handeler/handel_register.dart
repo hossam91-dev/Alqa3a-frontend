@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/constants/app_strings.dart';
-import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/custom_loading_indicator.dart';
 
@@ -47,7 +46,7 @@ class RegisterHandler extends StatelessWidget {
       builder: (context, state) {
         if (state is AuthLoading) {
           return const Center(
-            child: CustomLoadingIndicator(petalColor: AppColors.primary),
+            child: CustomLoading(),
           );
         }
         return AppButton(

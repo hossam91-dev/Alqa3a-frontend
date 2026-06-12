@@ -155,7 +155,9 @@ final appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.hallDetails,
       builder: (context, state) =>
-          HallDetailsScreen(hallId: state.pathParameters['id']!),
+          BlocProvider(
+            create: (_)=> sl<HallsCubit>()..getHallById(state.pathParameters['id']!),
+              child: HallDetailsScreen(hallId: state.pathParameters['id']!)),
     ),
 
     // Smart Match

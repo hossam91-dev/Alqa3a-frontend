@@ -136,8 +136,7 @@ class _SmartMatchScreenState extends State<SmartMatchScreen> {
                 builder: (context, state) {
                   if (state is SmartMatchLoading) {
                     return const Center(
-                      child: CustomLoadingIndicator(
-                        petalColor: AppColors.primary,
+                      child: CustomLoading(
                       ),
                     );
                   }

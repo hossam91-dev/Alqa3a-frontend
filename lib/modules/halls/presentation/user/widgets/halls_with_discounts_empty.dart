@@ -13,6 +13,7 @@ class HallsWithDiscountsEmpty extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
+          width: double.infinity,
           padding: EdgeInsets.all(AppGaps.g16),
           decoration: BoxDecoration(
               color: AppColors.successBg,

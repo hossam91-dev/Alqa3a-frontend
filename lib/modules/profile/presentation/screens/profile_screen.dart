@@ -1,3 +1,4 @@
+import 'package:alqa3a/core/widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -6,7 +7,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Profile Screen'),
+      child: CustomLoading(),
     );
   }
 }

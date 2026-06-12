@@ -21,14 +21,14 @@ class MostPopularHalls extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HallsCubit, HallsState>(
       builder: (context, state) {
-        if (state is HomeLoading) {
-          return const SliverFillRemaining(
-            hasScrollBody: false,
-            child: Center(
-              child: CustomLoadingIndicator(petalColor: AppColors.primary),
-            ),
-          );
-        }
+        // if (state is HomeLoading) {
+        //   return const SliverFillRemaining(
+        //     hasScrollBody: false,
+        //     child: Center(
+        //       child: CustomLoadingIndicator(petalColor: AppColors.primary),
+        //     ),
+        //   );
+        // }
         if (state is PopularError) {
           return SliverFillRemaining(
             hasScrollBody: false,
@@ -59,8 +59,7 @@ class MostPopularHalls extends StatelessWidget {
                     hall: hall,
                     onBookPressed: () =>
                         context.push(AppRoutes.bookingPath(hall.id)),
-                    onDetailsPressed: () {},
-                    onFavoritePressed: () {},
+                    onDetailsPressed: () => context.push(AppRoutes.hallDetailsPath(hall.id)),
                   ),
                 );
               },

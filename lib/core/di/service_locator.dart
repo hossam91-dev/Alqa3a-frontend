@@ -9,6 +9,10 @@ import '../../modules/halls/data/datasources/halls_remote_datasource.dart';
 import '../../modules/halls/data/repositories/halls_repository_impl.dart';
 import '../../modules/halls/domain/repositories/halls_repository.dart';
 import '../../modules/halls/presentation/cubit/cubit.dart';
+import '../../modules/saved_halls/data/datasources/saved_halls_remote_datasource.dart';
+import '../../modules/saved_halls/data/repositories/saved_halls_repository_impl.dart';
+import '../../modules/saved_halls/domain/repositories/saved_halls_repository.dart';
+import '../../modules/saved_halls/presentation/cubit/cubit.dart';
 import '../../modules/smart_match/data/datasources/smart_match_remote_datasource.dart';
 import '../../modules/smart_match/data/repositories/smart_match_repository_impl.dart';
 import '../../modules/smart_match/domain/repositories/smart_match_repository.dart';
@@ -66,4 +70,13 @@ Future<void> setupServiceLocator() async {
   );
 
   sl.registerFactory(() => SmartMatchCubit(smartMatchRepository: sl()));
+
+  // ─── Saved Halls ──────────────────────────────
+  sl.registerLazySingleton(() => SavedHallsRemoteDataSource(sl()));
+
+  sl.registerLazySingleton<SavedHallsRepository>(
+    () => SavedHallsRepositoryImpl(sl()),
+  );
+
+  sl.registerSingleton(SavedHallsCubit(savedHallsRepository: sl()));
 }

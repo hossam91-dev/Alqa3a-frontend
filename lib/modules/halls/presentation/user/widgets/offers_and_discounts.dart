@@ -25,16 +25,16 @@ class OffersAndDiscounts extends StatelessWidget {
 
     return BlocBuilder<HallsCubit,HallsState>(
       builder: (context, state) {
-        if (state is HomeLoading){
-          return const  Center(child: CustomLoadingIndicator(petalColor: AppColors.primary,));
-
-        }
+        // if (state is HomeLoading){
+        //   return const  Center(child: CustomLoading());
+        //
+        // }
         if(state is DiscountsError){
           return Center(child: ErrorScreen(message: state.message,));
         }
         if (state is HomeLoaded || state is PopularError){
           if(state.hallsWithDiscounts.isEmpty){
-            return const HallsWithDiscountsEmpty();
+             return const HallsWithDiscountsEmpty();
           }
           return SizedBox(
             height: screenHeight * 0.32,

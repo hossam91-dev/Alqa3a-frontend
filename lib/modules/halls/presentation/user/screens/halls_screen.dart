@@ -54,8 +54,7 @@ class _HallsScreenState extends State<HallsScreen> {
                     return const SliverFillRemaining(
                       hasScrollBody: false,
                       child: Center(
-                        child: CustomLoadingIndicator(
-                          petalColor: AppColors.primary,
+                        child: CustomLoading(
                         ),
                       ),
                     );

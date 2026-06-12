@@ -1,13 +1,23 @@
-class SmartMatchResultEntity {
+import '../../../../core/interfaces/hall_saveable.dart';
+
+class SmartMatchResultEntity implements HallSaveable {
+  @override
   final String id;
+  @override
   final String name;
+  @override
   final String region;
+  @override
   final String address;
+  @override
   final int capacity;
+  @override
   final double pricePerEvent;
+  @override
   final double avgRating;
   final double score;
-  final String? coverImage;
+  @override
+  final String? coverImageUrl;
 
   const SmartMatchResultEntity({
     required this.id,
@@ -18,6 +28,6 @@ class SmartMatchResultEntity {
     required this.pricePerEvent,
     required this.avgRating,
     required this.score,
-    this.coverImage,
+    this.coverImageUrl,
   });
 }

@@ -66,8 +66,8 @@ class _OtpScreenState extends State<OtpScreen> {
           builder: (context, state) {
             if (state is AuthLoading) {
               return Center(
-                child: CustomLoadingIndicator(
-                  petalColor: AppColors.primary,
+                child: CustomLoading(
+
                 ),
               );
             }

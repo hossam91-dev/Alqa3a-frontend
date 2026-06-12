@@ -39,7 +39,7 @@ class BookingDetailsScreen extends StatelessWidget {
         builder: (context, state) {
           if (state is BookingDetailsLoading) {
             return const Center(
-              child: CustomLoadingIndicator(petalColor: AppColors.primary),
+              child: CustomLoading(),
             );
           }
           if (state is BookingError) {

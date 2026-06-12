@@ -23,9 +23,7 @@ class CancelBookingButton extends StatelessWidget {
             state.id == bookingId;
 
         return isLoading
-            ? const Center(child: CustomLoadingIndicator(
-          petalColor: AppColors.primary,
-          size: 40,
+            ? const Center(child: CustomLoading(
         ))
             : AppButton.outlined(
           text: 'إلغاء الحجز',

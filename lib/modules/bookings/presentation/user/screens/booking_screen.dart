@@ -117,8 +117,7 @@ class _BookingScreenState extends State<BookingScreen> {
                 builder: (context, state) {
                   if (state is BookingCreating) {
                     return const Center(
-                      child: CustomLoadingIndicator(
-                        petalColor: AppColors.primary,
+                      child: CustomLoading(
                       ),
                     );
                   }

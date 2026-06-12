@@ -1,15 +1,12 @@
-import 'package:alqa3a/core/constants/app_strings.dart';
+
 import 'package:alqa3a/core/constants/svg_icons.dart';
 import 'package:alqa3a/core/utils/app_toast.dart';
-import 'package:alqa3a/core/utils/helpers/date_format_helper.dart';
-import 'package:alqa3a/core/widgets/app_button.dart';
-import 'package:alqa3a/core/widgets/app_text.dart';
 import 'package:alqa3a/core/widgets/custom_loading_indicator.dart';
 import 'package:alqa3a/core/widgets/empty_screen.dart';
 import 'package:alqa3a/modules/bookings/presentation/user/widgets/my_bookings_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:gap/gap.dart';
 
 import '../../../../../core/constants/app_padding.dart';
@@ -53,7 +50,7 @@ class MyBookingsScreen extends StatelessWidget {
           builder: (context, state) {
             if (state is BookingsLoading) {
               return const Center(
-                child: CustomLoadingIndicator(petalColor: AppColors.primary),
+                child: CustomLoading(),
               );
             }
             if (state is BookingsError) {

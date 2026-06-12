@@ -1,3 +1,5 @@
+import 'package:alqa3a/core/constants/api_constants.dart';
+
 import '../../../../core/network/api_client.dart';
 import '../../../../core/error/app_exception.dart';
 import '../../../../core/utils/result.dart';
@@ -16,7 +18,7 @@ class SmartMatchRemoteDataSource {
     required double budgetMax,
   }) {
     return _apiClient.post(
-      '/smart-match',
+      ApiConstants.smartMatchEndpoint,
       data: {
         'region': region,
         'eventDate': eventDate,

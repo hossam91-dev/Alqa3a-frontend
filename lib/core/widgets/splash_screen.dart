@@ -9,9 +9,9 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: AppColors.primary,
-      body: Center(
-        child: CustomLoadingIndicator(petalColor: AppColors.white,),
+      backgroundColor: AppColors.white,
+      body: const Center(
+        child: CustomLoading(),
       ),
     );
   }
