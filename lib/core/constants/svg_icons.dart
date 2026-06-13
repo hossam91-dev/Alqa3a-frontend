@@ -30,4 +30,8 @@ abstract class SvgIcons{
   static const String notes = '$_svgPath/notebook-pen.svg';
   static const String menuHorizontal = '$_svgPath/ellipsis.svg';
   static const String info = '$_svgPath/info.svg';
+  static const String notifications = '$_svgPath/bell.svg';
+  static const String languages = '$_svgPath/globe.svg';
+  static const String suport = '$_svgPath/headset.svg';
+  static const String privacy = '$_svgPath/shield.svg';
 }

@@ -6,13 +6,13 @@ import 'package:alqa3a/core/widgets/app_button.dart';
 import 'package:alqa3a/core/widgets/app_text.dart';
 import 'package:alqa3a/core/widgets/custom_network_image.dart';
 import 'package:alqa3a/core/widgets/save_hall_button.dart';
-import 'package:alqa3a/modules/halls/domain/entities/hall_entity.dart';
+import 'package:alqa3a/core/interfaces/hall_saveable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class HallCard extends StatelessWidget {
-  final HallEntity hall;
+  final HallSaveable hall;
   final VoidCallback? onBookPressed;
   final VoidCallback? onDetailsPressed;
 
@@ -37,7 +37,7 @@ class HallCard extends StatelessWidget {
           Stack(
             children: [
               CustomNetworkImage(
-                imageUrl: hall.coverImageUrl??'',
+                imageUrl: hall.coverImageUrl ?? '',
                 width: double.infinity,
                 height: MediaQuery.sizeOf(context).height * 0.25,
                 topLeft: 20,
@@ -46,7 +46,10 @@ class HallCard extends StatelessWidget {
               Positioned(
                 top: 10,
                 right: 10,
-                child: SaveHallButton(hallId: hall.id,hall: hall,)
+                child: SaveHallButton(
+                  hallId: hall.id,
+                  hall: hall,
+                ),
               ),
             ],
           ),
@@ -142,7 +145,8 @@ class HallCard extends StatelessWidget {
         SvgPicture.asset(
           icon,
           width: 14,
-          colorFilter: const ColorFilter.mode(AppColors.textMuted, BlendMode.srcIn),
+          colorFilter:
+              const ColorFilter.mode(AppColors.textMuted, BlendMode.srcIn),
         ),
         const Gap(AppGaps.g6),
         AppText.body(label, fontSize: 12, color: AppColors.textMuted),
@@ -150,5 +154,3 @@ class HallCard extends StatelessWidget {
     );
   }
 }
-
-

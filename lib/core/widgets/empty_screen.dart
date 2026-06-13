@@ -19,19 +19,21 @@ class EmptyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      spacing: AppGaps.g6,
-      children: [
-        SvgPicture.asset(
-          icon,
-          width: 50,
-          colorFilter: ColorFilter.mode(iconColor?? AppColors.primary, BlendMode.srcIn,),
-        ),
-        AppText.headline(title),
-        AppText.body(message,textAlign: TextAlign.center),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: AppGaps.g6,
+        children: [
+          SvgPicture.asset(
+            icon,
+            width: 50,
+            colorFilter: ColorFilter.mode(iconColor?? AppColors.primary, BlendMode.srcIn,),
+          ),
+          AppText.headline(title),
+          AppText.body(message,textAlign: TextAlign.center),
 
-      ],
+        ],
+      ),
     );
   }
 }
